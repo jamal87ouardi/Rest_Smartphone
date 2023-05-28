@@ -3,8 +3,8 @@
     include('Rest.php');
     $api = new Rest();
     switch($requestMethod) {
-        case 'GET':	
-            $api->insertEmployee($_GET);
+        case 'POST':	
+            $api->insertMovie($_POST);
             break;
         default:
         header("HTTP/1.0 405 Method Not Allowed");

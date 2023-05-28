@@ -6,7 +6,7 @@ function getConnection() {
     $servername = "localhost";
     $username = "root";
     $password = "bismiL@hi1";
-    $dbname = "restapi";
+    $dbname = "restmovie";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password,$dbname);
@@ -15,21 +15,23 @@ function getConnection() {
 
 }
 
-function insertEmployee($empData){ 		
-	$empName=$empData["empName"];
-	$empAge=$empData["empAge"];
-	$empSkills=$empData["empSkills"];
-	$empAddress=$empData["empAddress"];		
-	$empDesignation=$empData["empDesignation"];
-	$empQuery="
-		INSERT INTO emp 
-		SET name='".$empName."', age='".$empAge."', skills='".$empSkills."', address='".$empAddress."', designation='".$empDesignation."'";
+function insertMovie($data){ 		
+	$movieId=$data["id"];
+	$movieTitle=$data["title"];
+	$movieImg=$data["image"];
 	
-    if( mysqli_query($this->getConnection(), $empQuery)) {
-		$messgae = "Employee created Successfully.";
+	$query="
+		INSERT INTO Movie
+		SET id='".$movieId."', 
+		title='".$movieTitle."', 
+		image='".$movieImg."'
+		";
+	
+    if( mysqli_query($this->getConnection(), $query)) {
+		$messgae = "Movie added Successfully.";
 		$status = 1;			
 	} else {
-		$messgae = "Employee creation failed.";
+		$messgae = "Movie added failed.";
 		$status = 0;			
 	}
 	$empResponse = array(
@@ -43,17 +45,17 @@ function insertEmployee($empData){
 function getAll() {
 
 	
-	$empQuery = "
-		SELECT id, name, skills, address, age 
-		FROM emp ";	
-	$resultData = mysqli_query($this->getConnection(), $empQuery);
-	$empData = array();
-	while( $empRecord = mysqli_fetch_assoc($resultData) ) {
-		$empData[] = $empRecord;
+	$query = "
+		SELECT id, title, image 
+		FROM Movie ";	
+	$resultData = mysqli_query($this->getConnection(), $query);
+	$movieData = array();
+	while( $record = mysqli_fetch_assoc($resultData) ) {
+		$movieData[] = $record;
 	}
 	header('Content-Type: application/json');
-    $nested = array("Employee"=>$empData);
-	echo json_encode($nested);	
+    
+	echo json_encode($movieData);	
 
 }
 
