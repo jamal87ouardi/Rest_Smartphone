@@ -6,7 +6,7 @@ function getConnection() {
     $servername = "localhost";
     $username = "root";
     $password = "bismiL@hi1";
-    $dbname = "restmovie";
+    $dbname = "restsmart";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password,$dbname);
@@ -15,23 +15,25 @@ function getConnection() {
 
 }
 
-function insertMovie($data){ 		
-	$movieId=$data["id"];
-	$movieTitle=$data["title"];
-	$movieImg=$data["image"];
+function insertPhone($data){ 		
+	$Id=$data["id"];
+	$Nom=$data["nom"];
+	$Prix=$data["prix"];
+	$Img=$data["image"];
 	
 	$query="
-		INSERT INTO Movie
-		SET id='".$movieId."', 
-		title='".$movieTitle."', 
-		image='".$movieImg."'
+		INSERT INTO Phone
+		SET id='".$Id."', 
+		nom='".$Nom."', 
+		prix='".$Prix."', 
+		image='".$Img."'
 		";
 	
     if( mysqli_query($this->getConnection(), $query)) {
-		$messgae = "Movie added Successfully.";
+		$messgae = "Phone added Successfully.";
 		$status = 1;			
 	} else {
-		$messgae = "Movie added failed.";
+		$messgae = "Phone added failed.";
 		$status = 0;			
 	}
 	$empResponse = array(
@@ -46,8 +48,8 @@ function getAll() {
 
 	
 	$query = "
-		SELECT id, title, image 
-		FROM Movie ";	
+		SELECT * 
+		FROM Phone ";	
 	$resultData = mysqli_query($this->getConnection(), $query);
 	$movieData = array();
 	while( $record = mysqli_fetch_assoc($resultData) ) {

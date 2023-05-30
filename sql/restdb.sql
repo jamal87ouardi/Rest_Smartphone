@@ -1,14 +1,18 @@
-drop database if exists restmovie;
-create database restmovie;
-use restmovie;
-CREATE TABLE `Movie` (
+drop database if exists restsmart;
+create database restsmart;
+use restsmart;
+
+CREATE TABLE `Phone` (
   `id` int primary key ,
-  `title` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `prix` Double NOT NULL,
   `image` varchar(255) NOT NULL
   );
 
-insert into Movie values
-(1001,'Ninja Turtels','https://lumiere-a.akamaihd.net/v1/images/image_b3c7d632.jpeg'),
-(1002,'Fast and Furius','https://media.gq.com/photos/58ee5612eb11fb4e6bf49344/3:2/w_1944,h_1296,c_limit/fast-and-furious-future.jpg'),
-(1003,'Into the Wild','https://assets.mubicdn.net/images/film/340/image-w856.jpg');
+insert into Phone values
+(1,'Samsung S21',4300,'https://www.mies.ma/5793-large_default/smartphone-samsung-galaxy-s21-5g-dual-sim-sm-g991bzagmwd.jpg'),
+(2,'Xioami Redmi 10',3200,'https://gsm.ma/wp-content/uploads/2021/09/002-4.jpg'),
+(3,'iphone 12',5800,'https://uno.ma/pub/media/catalog/product/cache/af8d7fd2c4634f9c922fba76a4a30c04/l/d/ld0005940089_1.jpeg')
+
+;
 
